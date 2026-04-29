@@ -1,0 +1,123 @@
+---
+---
+<div class="apac-chart">
+  <div class="apac-chart-head">
+    <span class="apac-chart-label">APAC Trajectory · 5 markets</span>
+    <span class="apac-chart-meta">live</span>
+  </div>
+  <svg viewBox="0 0 320 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="APAC city map showing trajectories from Chennai to Singapore, Kuala Lumpur, Sydney, and Auckland">
+    <g class="chart-grid">
+      <line x1="0" y1="32" x2="320" y2="32"/>
+      <line x1="0" y1="65" x2="320" y2="65"/>
+      <line x1="0" y1="98" x2="320" y2="98"/>
+      <line x1="80" y1="0" x2="80" y2="130"/>
+      <line x1="160" y1="0" x2="160" y2="130"/>
+      <line x1="240" y1="0" x2="240" y2="130"/>
+    </g>
+
+    <path class="chart-trajectory t1" d="M 78 60 Q 130 40 175 70"/>
+    <path class="chart-trajectory t2" d="M 78 60 Q 130 90 180 92"/>
+    <path class="chart-trajectory t3" d="M 78 60 Q 170 30 268 105"/>
+    <path class="chart-trajectory t4" d="M 78 60 Q 200 20 300 100"/>
+
+    <circle class="chart-city-pulse" cx="78" cy="60" r="3"/>
+    <circle class="chart-city origin" cx="78" cy="60" r="2.6"/>
+    <text class="chart-label origin" x="78" y="50" text-anchor="middle">CHN</text>
+
+    <circle class="chart-city-pulse delay-1" cx="175" cy="70" r="2.5"/>
+    <circle class="chart-city" cx="175" cy="70" r="2"/>
+    <text class="chart-label" x="175" y="83" text-anchor="middle">KUL</text>
+
+    <circle class="chart-city-pulse delay-2" cx="180" cy="92" r="2.5"/>
+    <circle class="chart-city" cx="180" cy="92" r="2"/>
+    <text class="chart-label" x="180" y="105" text-anchor="middle">SIN</text>
+
+    <circle class="chart-city-pulse delay-3" cx="268" cy="105" r="2.5"/>
+    <circle class="chart-city" cx="268" cy="105" r="2"/>
+    <text class="chart-label" x="268" y="118" text-anchor="middle">SYD</text>
+
+    <circle class="chart-city-pulse delay-4" cx="300" cy="100" r="2.5"/>
+    <circle class="chart-city" cx="300" cy="100" r="2"/>
+    <text class="chart-label" x="300" y="113" text-anchor="middle">AKL</text>
+  </svg>
+</div>
+
+<style>
+  .apac-chart {
+    border-top: 1px solid var(--rule);
+    padding: 18px 18px 16px;
+    position: relative;
+    background: var(--bg);
+  }
+  .apac-chart-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .apac-chart-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .apac-chart-meta {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .apac-chart-meta::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: block;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .apac-chart svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .chart-grid line { stroke: var(--rule); stroke-width: 0.5; stroke-dasharray: 1 3; }
+  .chart-trajectory {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 0.7;
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    opacity: 0.55;
+    animation: trajectory-draw 1.8s var(--ease-out) forwards;
+  }
+  .chart-trajectory.t2 { animation-delay: 0.15s; }
+  .chart-trajectory.t3 { animation-delay: 0.3s; }
+  .chart-trajectory.t4 { animation-delay: 0.45s; }
+
+  .chart-city { fill: var(--accent); }
+  .chart-city.origin { fill: var(--ink); }
+  .chart-city-pulse {
+    fill: var(--accent);
+    opacity: 0.5;
+    transform-origin: center;
+    transform-box: fill-box;
+    animation: city-pulse 2.6s ease-in-out infinite;
+  }
+  .chart-city-pulse.delay-1 { animation-delay: 0.4s; }
+  .chart-city-pulse.delay-2 { animation-delay: 0.8s; }
+  .chart-city-pulse.delay-3 { animation-delay: 1.2s; }
+  .chart-city-pulse.delay-4 { animation-delay: 1.6s; }
+
+  .chart-label {
+    font-family: var(--font-mono);
+    font-size: 7px;
+    fill: var(--ink-mute);
+    letter-spacing: 0.1em;
+  }
+  .chart-label.origin { fill: var(--ink); font-weight: 500; }
+</style>

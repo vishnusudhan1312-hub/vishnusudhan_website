@@ -1,0 +1,80 @@
+---
+---
+<aside class="aside reveal delay-1" aria-label="Frameworks in scope">
+  <div class="aside-head">
+    <span class="aside-label">Frameworks</span>
+    <span class="aside-meta">in scope</span>
+  </div>
+  <ul class="frameworks-list">
+    <li class="framework-row">
+      <span class="framework-num">01</span>
+      <span class="framework-name">MAS</span>
+      <span class="framework-region">Singapore</span>
+    </li>
+    <li class="framework-row">
+      <span class="framework-num">02</span>
+      <span class="framework-name">APRA</span>
+      <span class="framework-region">Australia</span>
+    </li>
+    <li class="framework-row">
+      <span class="framework-num">03</span>
+      <span class="framework-name">RBI</span>
+      <span class="framework-region">India</span>
+    </li>
+    <li class="framework-row">
+      <span class="framework-num">04</span>
+      <span class="framework-name">CASA</span>
+      <span class="framework-region">Australia</span>
+    </li>
+    <li class="framework-row">
+      <span class="framework-num">05</span>
+      <span class="framework-name">CAAS</span>
+      <span class="framework-region">Singapore</span>
+    </li>
+    <li class="framework-row">
+      <span class="framework-num">06</span>
+      <span class="framework-name">CMMI L5</span>
+      <span class="framework-region">Global</span>
+    </li>
+  </ul>
+  <div class="aside-divider"></div>
+  <p class="aside-note">Compliance is <em>design</em>, not a checklist.</p>
+</aside>
+
+<style>
+  .frameworks-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .framework-row {
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
+    gap: 10px;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .framework-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .framework-row:first-child { padding-top: 0; }
+  .framework-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 11px;
+    color: var(--accent);
+  }
+  .framework-name {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .framework-region {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+</style>

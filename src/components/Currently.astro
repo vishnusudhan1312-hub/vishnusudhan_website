@@ -1,0 +1,65 @@
+---
+---
+<div class="currently">
+  <span class="currently-label">— Currently</span>
+  <span class="currently-item">
+    <span class="currently-item-key">Reading</span>
+    <span class="currently-item-val">Aviation industry</span>
+  </span>
+  <span class="currently-item">
+    <span class="currently-item-key">Building</span>
+    <span class="currently-item-val">Digitraly pipeline</span>
+  </span>
+  <span class="currently-item">
+    <span class="currently-item-key">Listening</span>
+    <span class="currently-item-val">TED business podcast</span>
+  </span>
+</div>
+
+<style>
+  .currently {
+    display: grid;
+    grid-template-columns: 110px repeat(3, 1fr);
+    padding: 14px var(--gutter);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    align-items: baseline;
+    background: var(--bg-alt);
+  }
+  .currently-label {
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: var(--font-mono);
+  }
+  .currently-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding-right: 16px;
+  }
+  .currently-item-key {
+    color: var(--ink-mute);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    min-width: 56px;
+    flex-shrink: 0;
+  }
+  .currently-item-val {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--ink);
+    font-size: 14px;
+    letter-spacing: 0;
+  }
+  @media (max-width: 768px) {
+    .currently {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 18px var(--gutter);
+    }
+    .currently-item { padding-right: 0; }
+  }
+</style>

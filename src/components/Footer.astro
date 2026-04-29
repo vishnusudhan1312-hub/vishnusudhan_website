@@ -1,0 +1,33 @@
+---
+---
+<footer>
+  <span>Vishnu Sudhan · Chennai, India · © 2026</span>
+  <span class="footer-right">Built with restraint.</span>
+</footer>
+
+<style>
+  footer {
+    padding: 28px var(--gutter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    border-top: 1px solid var(--rule);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-right {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: 0;
+  }
+  @media (max-width: 768px) {
+    footer { padding: 20px var(--gutter); }
+    .footer-right { font-size: 12px; }
+  }
+</style>

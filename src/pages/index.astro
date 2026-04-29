@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Currently from '../components/Currently.astro';
+import ThinkSection from '../components/ThinkSection.astro';
+import AreasSection from '../components/AreasSection.astro';
+import WorkSection from '../components/WorkSection.astro';
+import QuoteSection from '../components/QuoteSection.astro';
+import AboutSection from '../components/AboutSection.astro';
+import ConnectSection from '../components/ConnectSection.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Vishnu Sudhan — Digital transformation pipelines for APAC's regulated industries";
+const description = "Business development for boutique digital transformation in APAC's regulated industries — airlines, fintech, healthcare. Currently at Digitraly.";
+---
+<Base title={title} description={description}>
+  <Nav />
+  <main id="main">
+    <Hero />
+    <Currently />
+    <ThinkSection />
+    <AreasSection />
+    <WorkSection />
+    <QuoteSection />
+    <AboutSection />
+    <ConnectSection />
+  </main>
+  <Footer />
+</Base>

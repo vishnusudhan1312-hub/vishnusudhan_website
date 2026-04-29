@@ -1,0 +1,122 @@
+---
+---
+<section class="section work" id="work">
+  <header class="section-header">
+    <div>
+      <p class="section-eyebrow">§ 03 — Selected work</p>
+      <h2 class="section-title">Things I've <em>shipped.</em></h2>
+    </div>
+    <span class="section-num-big" aria-hidden="true">03</span>
+  </header>
+  <p class="work-intro reveal">A few projects I led independently before moving into aviation. Client names withheld by request.</p>
+  <div class="work-list">
+    <article class="work-card reveal">
+      <span class="work-year">2023</span>
+      <div class="work-content">
+        <h3 class="work-title">NGO digital presence</h3>
+        <p class="work-desc">End-to-end website rebuild. Brief was tight, budget was tighter. Delivered ahead of schedule with a live admin handoff.</p>
+      </div>
+      <span class="work-tag">Independent</span>
+    </article>
+
+    <article class="work-card reveal delay-1">
+      <span class="work-year">2023</span>
+      <div class="work-content">
+        <h3 class="work-title">Real estate firm</h3>
+        <p class="work-desc">Full-scale SEO, website development and social media management. Built the organic acquisition channel from zero.</p>
+      </div>
+      <span class="work-tag">Independent</span>
+    </article>
+
+    <article class="work-card reveal delay-2">
+      <span class="work-year">2024</span>
+      <div class="work-content">
+        <h3 class="work-title">Digital marketing agency</h3>
+        <p class="work-desc">Lead generation engine and outbound infrastructure. Worked with the founding team on what they actually needed, not what was on the original brief.</p>
+      </div>
+      <span class="work-tag">Independent</span>
+    </article>
+  </div>
+  <p class="work-closing reveal">Current Digitraly engagements are confidential under client agreement.</p>
+</section>
+
+<style>
+  .work-intro {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 600px;
+    margin: 0 0 36px;
+  }
+  .work-list { padding-bottom: 32px; }
+  .work-card {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 28px;
+    padding: 26px 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+    transition: padding 0.5s var(--ease-out-expo);
+  }
+  .work-card:last-child { border-bottom: 1px solid var(--rule); }
+  .work-card:hover { padding-left: 18px; }
+  .work-year {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    padding-top: 6px;
+  }
+  .work-content { display: flex; flex-direction: column; gap: 8px; max-width: 520px; }
+  .work-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.5vw, 26px);
+    line-height: 1.1;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    transition: color 0.4s var(--ease-out);
+  }
+  .work-card:hover .work-title { color: var(--accent); }
+  .work-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .work-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 5px 10px;
+    border: 1px solid var(--accent-soft);
+    border-radius: 2px;
+    align-self: start;
+    margin-top: 8px;
+  }
+  .work-closing {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-mute);
+    margin-top: 28px;
+    padding-bottom: 16px;
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    .work-card {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 22px 0;
+    }
+    .work-year { padding-top: 0; }
+    .work-tag { margin-top: 4px; }
+    .work-card:hover { padding-left: 8px; }
+  }
+</style>

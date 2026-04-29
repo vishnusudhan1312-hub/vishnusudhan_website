@@ -1,0 +1,58 @@
+---
+import FrameworksAside from './FrameworksAside.astro';
+---
+<section class="section think">
+  <header class="section-header">
+    <div>
+      <p class="section-eyebrow">§ 01 — A note</p>
+      <h2 class="section-title">On regulated <em>industry</em> transformation</h2>
+    </div>
+    <span class="section-num-big" aria-hidden="true">01</span>
+  </header>
+  <div class="section-split">
+    <div class="section-split-main think-content">
+      <p class="think-pull reveal">Four years into business development. One year deep in aviation. What keeps pulling me back to this space is how much actually gets solved when the delivery model is right.</p>
+      <p class="think-body reveal delay-1">APAC airlines, fintechs and healthcare operators are working through some of the most interesting digital problems in the region. Modernizing customer experience. Moving legacy platforms to cloud. Keeping cybersecurity and compliance ahead of the regulator. The ambition is there. What most teams tell me they want is a partner who can match the pace.</p>
+      <p class="think-mid reveal delay-2">The pattern I keep noticing. <em>Boutique</em> delivery models with senior-only teams ship faster than 18-month Big&nbsp;4 roadmaps. Not because they're cheaper. Because they're closer to the work.</p>
+    </div>
+    <FrameworksAside />
+  </div>
+</section>
+
+<style>
+  .think { padding: 0 var(--gutter) 64px; border-bottom: 1px solid var(--rule); }
+  .think-content { max-width: 720px; padding-top: 8px; }
+  .think-pull {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(20px, 2.6vw, 28px);
+    line-height: 1.32;
+    color: var(--ink);
+    margin: 0 0 28px;
+    border-left: 2px solid var(--accent);
+    padding-left: 22px;
+  }
+  .think-body {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: 600px;
+    margin: 0 0 28px;
+    padding-left: 22px;
+  }
+  .think-mid {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.4;
+    color: var(--ink);
+    max-width: 640px;
+    padding-left: 22px;
+    margin: 0;
+  }
+  .think-mid em { color: var(--accent); font-style: italic; }
+
+  @media (max-width: 768px) {
+    .think { padding-bottom: 48px; }
+    .think-pull, .think-body, .think-mid { padding-left: 16px; }
+  }
+</style>

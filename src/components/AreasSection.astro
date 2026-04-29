@@ -1,0 +1,126 @@
+---
+---
+<section class="section areas">
+  <header class="section-header">
+    <div>
+      <p class="section-eyebrow">§ 02 — Practice areas</p>
+      <h2 class="section-title">Where I spend <em>my time.</em></h2>
+    </div>
+    <span class="section-num-big" aria-hidden="true">02</span>
+  </header>
+  <div class="areas-list">
+    <article class="area-row reveal">
+      <span class="area-num">01</span>
+      <div class="area-content">
+        <h3 class="area-title">Airline &amp; aviation digital</h3>
+        <p class="area-desc">Mobile experience. Booking flow conversion. Customer-facing platforms that need to hold up under regulatory scrutiny.</p>
+      </div>
+      <span class="area-loc">AU · SG · MY · NZ</span>
+    </article>
+
+    <article class="area-row reveal delay-1">
+      <span class="area-num">02</span>
+      <div class="area-content">
+        <h3 class="area-title">Fintech &amp; regulated finance</h3>
+        <p class="area-desc">Teams working through MAS, APRA and RBI frameworks. Platform modernization that has to clear compliance before it ships.</p>
+      </div>
+      <span class="area-loc">SG · AU · IN</span>
+    </article>
+
+    <article class="area-row reveal delay-2">
+      <span class="area-num">03</span>
+      <div class="area-content">
+        <h3 class="area-title">Healthcare digital modernization</h3>
+        <p class="area-desc">Operators moving patient-facing systems forward without breaking what's already working. Quietly one of the most complex spaces to operate in.</p>
+      </div>
+      <span class="area-loc">APAC</span>
+    </article>
+
+    <article class="area-row reveal delay-3">
+      <span class="area-num">04</span>
+      <div class="area-content">
+        <h3 class="area-title">CMMI Level 5 partnerships</h3>
+        <p class="area-desc">Connecting IT services firms with certified Level 5 partners for government and enterprise bids that require process maturity.</p>
+      </div>
+      <span class="area-loc">Global</span>
+    </article>
+  </div>
+</section>
+
+<style>
+  .areas-list { padding-bottom: 8px; }
+  .area-row {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule);
+    transition: padding 0.5s var(--ease-out-expo), background 0.4s var(--ease-out);
+    position: relative;
+    cursor: default;
+  }
+  .area-row:last-child { border-bottom: 1px solid var(--rule); }
+  .area-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 22px;
+    bottom: 22px;
+    width: 2px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .area-row:hover {
+    padding-left: 18px;
+    background: linear-gradient(90deg, var(--accent-mark), transparent 60%);
+  }
+  .area-row:hover::before { transform: scaleY(1); }
+
+  .area-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+  .area-content { display: flex; flex-direction: column; gap: 8px; }
+  .area-title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 2.6vw, 28px);
+    line-height: 1.1;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    transition: color 0.4s var(--ease-out);
+  }
+  .area-row:hover .area-title { color: var(--accent); }
+  .area-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 540px;
+  }
+  .area-loc {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    padding-top: 8px;
+  }
+
+  @media (max-width: 768px) {
+    .area-row {
+      grid-template-columns: 28px 1fr;
+      gap: 14px;
+      padding: 18px 0;
+    }
+    .area-loc { grid-column: 2; padding-top: 0; margin-top: 4px; }
+    .area-row:hover { padding-left: 8px; }
+  }
+</style>

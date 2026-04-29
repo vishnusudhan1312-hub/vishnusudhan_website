@@ -1,0 +1,23 @@
+{
+  "name": "vishnusudhan-com",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "audit": "pnpm audit --prod",
+    "fonts": "node scripts/copy-fonts.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter": "5.1.1",
+    "@fontsource-variable/jetbrains-mono": "5.1.1",
+    "@fontsource/instrument-serif": "5.1.1",
+    "astro": "4.16.18",
+    "sharp": "0.33.5"
+  }
+}

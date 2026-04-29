@@ -1,0 +1,119 @@
+---
+---
+<section class="section connect" id="connect">
+  <header class="section-header">
+    <div>
+      <p class="section-eyebrow">§ 06 — Let's talk</p>
+      <h2 class="section-title">If something <em>resonates,</em> reach out.</h2>
+    </div>
+    <span class="section-num-big" aria-hidden="true">06</span>
+  </header>
+  <p class="connect-pull reveal">If your team is scoping digital transformation, cybersecurity, cloud or UX work, or doing early vendor research for someone who is, send me a DM. Decision-maker or not, doesn't matter. Twenty minutes is enough to know if a second conversation makes sense.</p>
+
+  <div class="connect-list">
+    <a class="connect-link reveal" href="https://linkedin.com/in/vishnu-sudhan" target="_blank" rel="noopener noreferrer">
+      <span class="connect-arrow" aria-hidden="true">→</span>
+      <span class="connect-type">LinkedIn</span>
+      <span class="connect-val">linkedin.com/in/vishnu-sudhan</span>
+      <span class="connect-ext" aria-hidden="true">↗</span>
+    </a>
+    <a class="connect-link email-link reveal delay-1" href="#" data-user="vishnusudhan.1312" data-domain="gmail.com" aria-label="Reveal email address">
+      <span class="connect-arrow" aria-hidden="true">→</span>
+      <span class="connect-type">Email</span>
+      <span class="connect-val email-val">click to reveal</span>
+      <span class="connect-ext" aria-hidden="true">↗</span>
+    </a>
+  </div>
+
+  <p class="connect-closing reveal">Based in Chennai, working with teams across APAC.</p>
+</section>
+
+<style>
+  .connect { padding: 0 var(--gutter) 64px; border-bottom: none; }
+  .connect-pull {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 2.4vw, 24px);
+    line-height: 1.4;
+    color: var(--ink);
+    margin: 4px 0 40px;
+    max-width: 720px;
+  }
+  .connect-list { display: flex; flex-direction: column; }
+  .connect-link {
+    display: grid;
+    grid-template-columns: 28px 100px 1fr 24px;
+    align-items: baseline;
+    gap: 18px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule);
+    position: relative;
+    transition: padding 0.5s var(--ease-out-expo);
+  }
+  .connect-link:last-child { border-bottom: 1px solid var(--rule); }
+  .connect-link:hover { padding-left: 16px; }
+  .connect-link::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .connect-link:hover::after { transform: scaleX(1); }
+
+  .connect-arrow {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--accent);
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .connect-link:hover .connect-arrow { transform: translateX(8px); }
+
+  .connect-type {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+  .connect-val {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 2.2vw, 24px);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    transition: color 0.4s var(--ease-out);
+  }
+  .connect-link:hover .connect-val { color: var(--accent); }
+  .connect-ext {
+    color: var(--ink-mute);
+    font-size: 14px;
+    text-align: right;
+    transition: color 0.4s var(--ease-out), transform 0.5s var(--ease-out-expo);
+  }
+  .connect-link:hover .connect-ext {
+    color: var(--accent);
+    transform: translate(4px, -4px);
+  }
+
+  .connect-closing {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-mute);
+    margin-top: 36px;
+  }
+
+  @media (max-width: 768px) {
+    .connect-link {
+      grid-template-columns: 24px 1fr;
+      gap: 12px;
+      padding: 18px 0;
+    }
+    .connect-type { grid-column: 2; margin-bottom: 4px; }
+    .connect-val { grid-column: 2; font-size: 18px; word-break: break-all; }
+    .connect-ext { display: none; }
+    .connect-link:hover { padding-left: 8px; }
+  }
+</style>

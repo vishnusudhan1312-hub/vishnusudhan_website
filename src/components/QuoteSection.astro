@@ -1,0 +1,94 @@
+---
+---
+<section class="quote-section" aria-label="Featured quote">
+  <span class="quote-marks" aria-hidden="true">"</span>
+  <p class="quote-eyebrow">§ 04 — A line I keep coming back to</p>
+  <blockquote class="quote-text">
+    <span class="quote-line"><span class="quote-line-inner">I think when you give your fullest in</span></span>
+    <span class="quote-line"><span class="quote-line-inner">something you genuinely care about,</span></span>
+    <span class="quote-line"><span class="quote-line-inner">the result reaches you on its own.</span></span>
+    <span class="quote-line"><span class="quote-line-inner"><em>The trick is making sure it's visible</em></span></span>
+    <span class="quote-line"><span class="quote-line-inner"><em>at the right moment.</em></span></span>
+  </blockquote>
+  <p class="quote-source">Vishnu Sudhan · 2026</p>
+</section>
+
+<style>
+  .quote-section {
+    padding: 96px var(--gutter) 96px;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    background: var(--bg-alt);
+    text-align: center;
+  }
+  .quote-marks {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-display);
+    font-size: clamp(72px, 12vw, 130px);
+    line-height: 1;
+    color: var(--accent-faint);
+    font-style: italic;
+    pointer-events: none;
+  }
+  .quote-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    max-width: max-content;
+  }
+  .quote-eyebrow::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--ink-mute);
+  }
+  .quote-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(22px, 3.4vw, 36px);
+    line-height: 1.32;
+    color: var(--ink);
+    margin: 0 auto 32px;
+    max-width: 880px;
+    font-weight: 400;
+    text-align: center;
+  }
+  .quote-text em { color: var(--accent); font-style: italic; }
+  .quote-line { display: block; overflow: hidden; }
+  .quote-line-inner {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 0.95s var(--ease-out-expo);
+  }
+  .quote-line:nth-child(1) .quote-line-inner { transition-delay: 0.05s; }
+  .quote-line:nth-child(2) .quote-line-inner { transition-delay: 0.15s; }
+  .quote-line:nth-child(3) .quote-line-inner { transition-delay: 0.25s; }
+  .quote-line:nth-child(4) .quote-line-inner { transition-delay: 0.35s; }
+  .quote-line:nth-child(5) .quote-line-inner { transition-delay: 0.45s; }
+  .quote-text.is-revealed .quote-line-inner { transform: translateY(0); }
+
+  .quote-source {
+    margin: 0 auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .quote-section { padding: 64px var(--gutter); }
+    .quote-marks { font-size: 80px; top: 18px; }
+    .quote-text { font-size: clamp(20px, 5.4vw, 26px); }
+  }
+</style>

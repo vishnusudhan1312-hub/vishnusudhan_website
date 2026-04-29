@@ -1,0 +1,130 @@
+---
+---
+<nav class="nav">
+  <a class="nav-mark" href="#top" aria-label="Vishnu Sudhan — back to top">vs</a>
+
+  <div class="nav-status" aria-label="Status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Available for conversations · Chennai</span>
+  </div>
+
+  <div class="nav-right">
+    <a class="nav-link" href="#work">Work</a>
+    <a class="nav-link" href="#about">About</a>
+    <a class="nav-link is-cta" href="#connect">Talk</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px var(--gutter);
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    background: rgba(14, 13, 12, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 50;
+    transition: background 0.5s var(--ease-in-out);
+  }
+  :global([data-theme="light"]) .nav { background: rgba(251, 247, 242, 0.78); }
+
+  .nav-mark {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    display: inline-block;
+    transition: transform 0.4s var(--ease-snap);
+  }
+  .nav-mark:hover { transform: translateY(-2px); }
+
+  .nav-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--status);
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .status-dot::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: var(--status);
+    opacity: 0.4;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+  }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: color 0.3s var(--ease-out);
+    position: relative;
+  }
+  .nav-link:hover { color: var(--ink); }
+  .nav-link.is-cta { color: var(--ink); }
+  .nav-link.is-cta::after {
+    content: '→';
+    margin-left: 4px;
+    display: inline-block;
+    transition: transform 0.4s var(--ease-snap);
+  }
+  .nav-link.is-cta:hover::after { transform: translateX(4px); }
+
+  .theme-toggle {
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    color: var(--ink-soft);
+    transition: transform 0.5s var(--ease-snap), color 0.3s var(--ease-out);
+  }
+  .theme-toggle:hover { color: var(--ink); transform: rotate(45deg); }
+  .theme-toggle:active { transform: rotate(180deg) scale(0.9); }
+  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle .icon-sun { display: block; }
+  .theme-toggle .icon-moon { display: none; }
+  :global([data-theme="light"]) .theme-toggle .icon-sun { display: none; }
+  :global([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
+
+  @media (max-width: 860px) {
+    .nav-status { display: none; }
+  }
+  @media (max-width: 768px) {
+    .nav { padding: 14px var(--gutter); }
+    .nav-mark { font-size: 22px; }
+    .nav-right { gap: 16px; }
+    .nav-link { font-size: 10px; }
+  }
+</style>

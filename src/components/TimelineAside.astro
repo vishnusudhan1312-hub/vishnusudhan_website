@@ -1,0 +1,111 @@
+---
+---
+<aside class="aside reveal delay-1" aria-label="Career trajectory">
+  <div class="aside-head">
+    <span class="aside-label">Trajectory</span>
+    <span class="aside-meta">Selected</span>
+  </div>
+  <ol class="timeline">
+    <li class="timeline-item">
+      <span class="timeline-marker"></span>
+      <div class="timeline-content">
+        <span class="timeline-place">Loyola College</span>
+        <span class="timeline-detail">Economics · Chennai</span>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <span class="timeline-marker"></span>
+      <div class="timeline-content">
+        <span class="timeline-place">Bharathiar University</span>
+        <span class="timeline-detail">Masters · Economics</span>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <span class="timeline-marker"></span>
+      <div class="timeline-content">
+        <span class="timeline-place">Joy Technologies</span>
+        <span class="timeline-detail">SEO · Intern → Team lead</span>
+      </div>
+    </li>
+    <li class="timeline-item">
+      <span class="timeline-marker"></span>
+      <div class="timeline-content">
+        <span class="timeline-place">Independent</span>
+        <span class="timeline-detail">Freelance · Web, SEO, BD</span>
+      </div>
+    </li>
+    <li class="timeline-item is-current">
+      <span class="timeline-marker"></span>
+      <div class="timeline-content">
+        <span class="timeline-place">Digitraly</span>
+        <span class="timeline-detail">Business Development · APAC</span>
+      </div>
+    </li>
+  </ol>
+</aside>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 12px;
+    width: 1px;
+    background: var(--rule-strong);
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 14px 1fr;
+    gap: 14px;
+    padding: 6px 0 14px;
+    position: relative;
+    align-items: start;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-marker {
+    width: 11px;
+    height: 11px;
+    border: 1px solid var(--ink-mute);
+    background: var(--bg-alt);
+    border-radius: 50%;
+    margin-top: 4px;
+    z-index: 1;
+    position: relative;
+  }
+  .timeline-item.is-current .timeline-marker {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-faint);
+  }
+  .timeline-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .timeline-place {
+    font-family: var(--font-display);
+    font-size: 16px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .timeline-item.is-current .timeline-place {
+    color: var(--accent);
+    font-style: italic;
+  }
+  .timeline-detail {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+</style>
