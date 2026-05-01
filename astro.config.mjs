@@ -2,7 +2,9 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://vishnusudhan.com',
+  // Live URL. Update to https://vishnusudhan.com when the custom domain is attached
+  // (then everything — canonical, sitemap, OG, JSON-LD — snaps to the new domain on next build).
+  site: 'https://vs.vishnusudhan-1312.workers.dev',
   output: 'static',
   trailingSlash: 'ignore',
   compressHTML: true,
