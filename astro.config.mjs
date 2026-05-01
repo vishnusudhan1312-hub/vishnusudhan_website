@@ -1,19 +1,25 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   // Live URL. Update to https://vishnusudhan.com when the custom domain is attached
   // (then everything — canonical, sitemap, OG, JSON-LD — snaps to the new domain on next build).
   site: 'https://vs.vishnusudhan-1312.workers.dev',
+
   output: 'static',
   trailingSlash: 'ignore',
   compressHTML: true,
   prefetch: false,
+
   build: {
     inlineStylesheets: 'auto',
     assets: '_assets'
   },
+
   devToolbar: { enabled: false },
+
   integrations: [
     sitemap({
       changefreq: 'monthly',
@@ -21,6 +27,7 @@ export default defineConfig({
       lastmod: new Date()
     })
   ],
+
   vite: {
     build: {
       sourcemap: false,
@@ -40,5 +47,7 @@ export default defineConfig({
         }
       }
     }
-  }
+  },
+
+  adapter: cloudflare()
 });
