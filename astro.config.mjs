@@ -22,8 +22,20 @@ export default defineConfig({
   vite: {
     build: {
       sourcemap: false,
-      cssMinify: 'lightningcss',
-      minify: 'esbuild'
+      cssMinify: 'esbuild',
+      minify: 'esbuild',
+      rollupOptions: {
+        output: {
+          assetFileNames: (info) => {
+            const raw = info.names?.[0] ?? info.name ?? 'asset';
+            const safe = raw.replace(/@_@astro/g, '').replace(/[^a-zA-Z0-9._-]/g, '-');
+            const base = safe.replace(/\.[^.]+$/, '') || 'asset';
+            return `_assets/${base}-[hash][extname]`;
+          },
+          chunkFileNames: '_assets/chunk-[hash].js',
+          entryFileNames: '_assets/[name]-[hash].js'
+        }
+      }
     }
   }
 });

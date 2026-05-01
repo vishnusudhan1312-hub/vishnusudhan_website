@@ -1,6 +1,12 @@
-# Deploying vishnusudhan.com to Cloudflare Pages
+# Deploying vishnusudhan.com to Cloudflare Workers + Static Assets
 
 A step-by-step guide. Follow it once, top to bottom. ~20 minutes the first time.
+
+> **Note:** Cloudflare unified Workers and Pages in 2024. New static-site
+> deployments now use the Workers + Static Assets product (URL ends in
+> `.workers.dev` instead of `.pages.dev`). The `wrangler.jsonc` at the project
+> root configures this — wrangler reads it, sees `assets.directory: "./dist"`,
+> and uploads our static build without converting the project to SSR.
 
 You'll end up with:
 - `vishnusudhan.com` registered at Cloudflare Registrar
