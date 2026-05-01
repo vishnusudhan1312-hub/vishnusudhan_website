@@ -19,6 +19,13 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; background: none; border: none; color: inherit; cursor: pointer; }
+abbr[title] {
+  text-decoration: underline dotted var(--rule-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: help;
+  -webkit-text-decoration: underline dotted var(--rule-strong);
+}
 ::selection { background: var(--accent); color: var(--bg); }
 
 :focus-visible {

@@ -45,8 +45,8 @@ You'll need: a credit card (~$10/yr for the domain), a GitHub account, this repo
    - **Build output directory:** `dist`
    - **Root directory:** `/`
    - **Environment variables:**
-     - `NODE_VERSION` = `20`
-     - `PNPM_VERSION` = `9`
+     - `NODE_VERSION` = `22`  *(Active LTS Node 24 also works; 22 is broadest)*
+     - `PNPM_VERSION` = `10`
 
 5. Click **Save and Deploy**. First build takes ~2 minutes. You'll get a `*.pages.dev` preview URL.
 

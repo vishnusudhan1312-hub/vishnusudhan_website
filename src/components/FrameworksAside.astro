@@ -8,32 +8,32 @@
   <ul class="frameworks-list">
     <li class="framework-row">
       <span class="framework-num">01</span>
-      <span class="framework-name">MAS</span>
+      <abbr class="framework-name" title="Monetary Authority of Singapore">MAS</abbr>
       <span class="framework-region">Singapore</span>
     </li>
     <li class="framework-row">
       <span class="framework-num">02</span>
-      <span class="framework-name">APRA</span>
+      <abbr class="framework-name" title="Australian Prudential Regulation Authority">APRA</abbr>
       <span class="framework-region">Australia</span>
     </li>
     <li class="framework-row">
       <span class="framework-num">03</span>
-      <span class="framework-name">RBI</span>
+      <abbr class="framework-name" title="Reserve Bank of India">RBI</abbr>
       <span class="framework-region">India</span>
     </li>
     <li class="framework-row">
       <span class="framework-num">04</span>
-      <span class="framework-name">CASA</span>
+      <abbr class="framework-name" title="Civil Aviation Safety Authority">CASA</abbr>
       <span class="framework-region">Australia</span>
     </li>
     <li class="framework-row">
       <span class="framework-num">05</span>
-      <span class="framework-name">CAAS</span>
+      <abbr class="framework-name" title="Civil Aviation Authority of Singapore">CAAS</abbr>
       <span class="framework-region">Singapore</span>
     </li>
     <li class="framework-row">
       <span class="framework-num">06</span>
-      <span class="framework-name">CMMI L5</span>
+      <abbr class="framework-name" title="Capability Maturity Model Integration, Level 5">CMMI L5</abbr>
       <span class="framework-region">Global</span>
     </li>
   </ul>
@@ -69,6 +69,9 @@
     letter-spacing: 0.04em;
     color: var(--ink);
     font-weight: 500;
+    text-decoration: underline dotted var(--rule-strong);
+    text-underline-offset: 3px;
+    cursor: help;
   }
   .framework-region {
     font-family: var(--font-mono);

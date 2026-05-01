@@ -4,20 +4,23 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "20.x"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "audit": "pnpm audit --prod",
-    "fonts": "node scripts/copy-fonts.mjs"
+    "fonts": "node scripts/copy-fonts.mjs",
+    "verify": "node scripts/verify-exif.mjs"
   },
   "devDependencies": {
-    "@fontsource-variable/inter": "5.1.1",
-    "@fontsource-variable/jetbrains-mono": "5.1.1",
-    "@fontsource/instrument-serif": "5.1.1",
-    "astro": "4.16.18",
-    "sharp": "0.33.5"
+    "@astrojs/sitemap": "3.7.2",
+    "@fontsource-variable/inter": "5.2.8",
+    "@fontsource-variable/jetbrains-mono": "5.2.8",
+    "@fontsource/instrument-serif": "5.2.8",
+    "astro": "6.2.1",
+    "lightningcss": "1.32.0",
+    "sharp": "0.34.5"
   }
 }
