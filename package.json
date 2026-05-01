@@ -9,10 +9,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "pnpm run build && wrangler dev",
     "audit": "pnpm audit --prod",
     "fonts": "node scripts/copy-fonts.mjs",
-    "verify": "node scripts/verify-exif.mjs"
+    "verify": "node scripts/verify-exif.mjs",
+    "generate-types": "wrangler types",
+    "deploy": "pnpm run build && wrangler deploy"
   },
   "devDependencies": {
     "@astrojs/sitemap": "3.7.2",
@@ -20,6 +22,13 @@
     "@fontsource-variable/jetbrains-mono": "5.2.8",
     "@fontsource/instrument-serif": "5.2.8",
     "astro": "6.2.1",
-    "sharp": "0.34.5"
+    "sharp": "0.34.5",
+    "wrangler": "^4.87.0"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.3.0"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }
