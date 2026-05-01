@@ -22,6 +22,7 @@ export default defineConfig({
   vite: {
     build: {
       sourcemap: false,
+      target: 'es2022',
       cssMinify: 'esbuild',
       minify: 'esbuild',
       rollupOptions: {

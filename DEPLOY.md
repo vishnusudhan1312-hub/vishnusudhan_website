@@ -1,12 +1,14 @@
-# Deploying vishnusudhan.com to Cloudflare Workers + Static Assets
+# Deploying vishnusudhan.com to Cloudflare Pages
 
 A step-by-step guide. Follow it once, top to bottom. ~20 minutes the first time.
 
-> **Note:** Cloudflare unified Workers and Pages in 2024. New static-site
-> deployments now use the Workers + Static Assets product (URL ends in
-> `.workers.dev` instead of `.pages.dev`). The `wrangler.jsonc` at the project
-> root configures this — wrangler reads it, sees `assets.directory: "./dist"`,
-> and uploads our static build without converting the project to SSR.
+> **Why Pages and not Workers + Static Assets?** Cloudflare's newer
+> "Workers + Static Assets" product runs `npx wrangler deploy` on every push,
+> which auto-runs `astro add cloudflare` for any Astro project it sees and
+> converts the build to SSR — even when you only want static. For a static
+> portfolio that's overhead we don't need. **Pages** is a pure upload-and-serve
+> product: it runs your build command, uploads the output directory, and
+> serves it from the edge. No adapter, no wrangler, no surprises.
 
 You'll end up with:
 - `vishnusudhan.com` registered at Cloudflare Registrar
