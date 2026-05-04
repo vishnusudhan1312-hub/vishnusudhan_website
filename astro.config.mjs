@@ -4,9 +4,8 @@ import sitemap from '@astrojs/sitemap';
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  // Live URL. Update to https://vishnusudhan.com when the custom domain is attached
-  // (then everything — canonical, sitemap, OG, JSON-LD — snaps to the new domain on next build).
-  site: 'https://vs.vishnusudhan-1312.workers.dev',
+  // Live URL — production custom domain.
+  site: 'https://vishnusudhan.com',
 
   output: 'static',
   trailingSlash: 'ignore',
