@@ -40,6 +40,6 @@ pnpm audit      # production dependency audit
 
 - All copy is in the HTML at build time. JavaScript only animates it; the page reads fully with JS off.
 - `prefers-reduced-motion` shows everything in its final state.
-- CSP is strict: `script-src 'self'`, `style-src 'self'`, no inline scripts or styles, Trusted Types enforced. Don't add inline `<script>`/`<style>` or `style=""` attributes; `astro.config.mjs` sets `inlineStylesheets: 'never'` for this reason.
+- CSP is strict: scripts from this site only (plus Cloudflare Web Analytics), `style-src 'self'`, no inline scripts or styles, Trusted Types enforced. Don't add inline `<script>`/`<style>` or `style=""` attributes; `astro.config.mjs` sets `inlineStylesheets: 'never'` for this reason.
 - The message box only builds a `mailto:` link. Nothing is sent to or stored by the site.
 - New dependency versions must be at least 3 days old (`minimumReleaseAge` in `pnpm-workspace.yaml`).

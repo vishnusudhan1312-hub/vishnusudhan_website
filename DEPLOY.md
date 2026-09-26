@@ -30,6 +30,7 @@ The Worker name in `wrangler.jsonc` must stay `vs` to match the dashboard. Custo
 
 - **JavaScript Detections** (Security → Bots). Cloudflare injects a small inline bot-detection script into every page. The site's security policy blocks inline scripts, so it can't run and leaves an error in the browser console. Turn JavaScript Detections off if the toggle is available. Bot Fight Mode can stay on.
 - **Email Address Obfuscation** (Scrape Shield). If it's on, Cloudflare rewrites email links in the HTML using a script. Check that the email chip still opens a mail draft on the live site; if it doesn't, turn this off.
+- **Web Analytics** (Analytics & Logs → Web Analytics). On by choice. It's cookieless and doesn't fingerprint visitors. Cloudflare adds its beacon script to each page, and `public/_headers` allows exactly that: scripts from `static.cloudflareinsights.com`, reports to `cloudflareinsights.com`. If you ever turn it off, remove both from the CSP.
 - **Email Routing**. `hello@vishnusudhan.com` forwards to your inbox. Keep it on; the site's email chip and message box both write to that address.
 
 ## Verify after a deploy
