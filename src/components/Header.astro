@@ -84,6 +84,9 @@ import { site } from '../data/content';
   .name {
     font: 600 15px/1.2 var(--font-sans);
     letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .status {
@@ -194,7 +197,7 @@ import { site } from '../data/content';
     }
   }
 
-  @media (max-width: 359px) {
+  @media (max-width: 389px) {
     .bar {
       gap: 8px;
     }
