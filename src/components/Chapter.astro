@@ -1,0 +1,46 @@
+---
+interface Props {
+  n: string;
+  title: string;
+}
+const { n, title } = Astro.props;
+const id = `ch-${n}`;
+---
+
+<section class="chapter" aria-labelledby={id}>
+  <div class="pin">
+    <p class="pill" id={id}>{n} — {title}</p>
+  </div>
+  <slot />
+</section>
+
+<style>
+  .pin {
+    position: sticky;
+    top: var(--pill-top);
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    margin-top: 72px;
+    padding-bottom: 20px;
+    pointer-events: none;
+  }
+
+  .chapter:first-of-type .pin {
+    margin-top: 24px;
+  }
+
+  .pill {
+    white-space: nowrap;
+    font: 500 11px/1 var(--font-mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--chip);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    padding: 8px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+  }
+</style>

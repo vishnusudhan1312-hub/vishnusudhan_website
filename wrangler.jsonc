@@ -1,13 +1,11 @@
 {
-	"compatibility_date": "2026-05-01",
-	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "vishnusudhan-com",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
-	},
-	"observability": {
-		"enabled": true
-	}
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Static assets only: no Worker script runs, so there's no server code to attack.
+  // Must match the Worker's name in the Cloudflare dashboard (Workers & Pages).
+  "name": "vs",
+  "compatibility_date": "2026-09-20",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
 }

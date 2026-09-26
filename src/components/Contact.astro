@@ -1,0 +1,60 @@
+---
+import { site } from '../data/content';
+---
+
+<ul class="reach attach" data-reveal data-contact>
+  <li>
+    <a class="c mail" href={`mailto:${site.email}`}>{site.email}</a>
+  </li>
+  <li>
+    <a class="c out" href={site.linkedin} target="_blank" rel="noopener noreferrer">
+      {site.linkedinLabel} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+    </a>
+  </li>
+</ul>
+
+<style>
+  .reach {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .c {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font: 500 14px/1 var(--font-sans);
+    white-space: nowrap;
+    transition:
+      transform 0.2s var(--ease),
+      border-color 0.2s ease;
+  }
+
+  @media (max-width: 359px) {
+    .c {
+      font-size: 13px;
+      padding: 0 14px;
+    }
+  }
+  .c:hover {
+    transform: translateY(-2px);
+  }
+
+  .mail {
+    background: var(--accent-fill);
+    color: var(--on-accent);
+  }
+
+  .out {
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+  }
+  .out:hover {
+    border-color: var(--accent);
+  }
+</style>

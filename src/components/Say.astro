@@ -1,0 +1,126 @@
+---
+interface Props {
+  avatar?: boolean;
+  gap?: 'tight' | 'loose';
+}
+const { avatar = false, gap } = Astro.props;
+---
+
+<div class:list={['say', gap]} data-reveal data-say>
+  {avatar ? <span class="av" aria-hidden="true">V</span> : <span class="av-space" aria-hidden="true" />}
+  <div class="bubble">
+    <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <p class="txt"><slot /></p>
+  </div>
+</div>
+
+<style>
+  .say {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    margin-bottom: 6px;
+  }
+  .say.tight {
+    margin-bottom: 8px;
+  }
+  .say.loose {
+    margin: 16px 0 6px;
+  }
+
+  .av,
+  .av-space {
+    width: var(--avatar);
+    height: var(--avatar);
+    flex: none;
+  }
+  .av {
+    border-radius: 50%;
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    font: italic 400 17px/var(--avatar) var(--font-serif);
+    text-align: center;
+  }
+
+  .bubble {
+    position: relative;
+    max-width: 82%;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r-bubble) var(--r-bubble) var(--r-bubble) var(--r-tail);
+    padding: 15px 19px;
+  }
+
+  .txt {
+    font: 400 17px/1.62 var(--font-sans);
+    text-wrap: pretty;
+  }
+
+  .dots {
+    position: absolute;
+    left: 19px;
+    top: 20px;
+    display: none;
+    gap: 5px;
+    transition: opacity 0.2s ease;
+  }
+  .dots i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--muted);
+    animation: dot 1.1s infinite paused;
+  }
+  .say:global(.is-in):not(:global(.is-typed)) .dots i {
+    animation-play-state: running;
+  }
+  .dots i:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .dots i:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  /* Typing reveal: clip to a dots pill, then open. Clip-path only, so no layout shift. */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.js) .dots {
+      display: flex;
+    }
+    :global(.js) .bubble {
+      clip-path: inset(0 calc(100% - 78px) calc(100% - 48px) 0 round 22px 22px 22px 6px);
+      transition: clip-path 0.6s var(--ease);
+    }
+    :global(.js) .txt {
+      opacity: 0;
+      transition: opacity 0.45s ease 0.15s;
+    }
+    :global(.js) .say.is-typed .bubble {
+      clip-path: inset(0 0 0 0 round 22px 22px 22px 6px);
+    }
+    :global(.js) .say.is-typed .txt {
+      opacity: 1;
+    }
+    :global(.js) .say.is-typed .dots {
+      opacity: 0;
+    }
+  }
+
+  @keyframes dot {
+    0%,
+    80%,
+    100% {
+      opacity: 0.25;
+      transform: translateY(0);
+    }
+    40% {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .bubble {
+      max-width: 88%;
+    }
+  }
+</style>

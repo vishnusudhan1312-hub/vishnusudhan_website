@@ -1,0 +1,55 @@
+---
+interface Props {
+  id: string;
+  first?: boolean;
+}
+const { id, first = false } = Astro.props;
+---
+
+<div class:list={['guest', { first }]} data-reveal="guest" data-guest>
+  <h2 id={id} class="q"><slot /></h2>
+  <p class="meta-line" aria-hidden="true">Guest <span class="ticks">✓✓</span></p>
+</div>
+
+<style>
+  .guest {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 40px 0 14px;
+  }
+  .guest.first {
+    margin-top: 12px;
+  }
+
+  .q {
+    max-width: 72%;
+    background: var(--guest);
+    color: var(--guest-ink);
+    font: 500 16px/1.45 var(--font-sans);
+    padding: 12px 17px;
+    border-radius: var(--r-bubble) var(--r-bubble) var(--r-tail) var(--r-bubble);
+    text-wrap: pretty;
+    scroll-margin-top: 120px;
+  }
+
+  .meta-line {
+    font: 400 10.5px/1 var(--font-mono);
+    color: var(--muted);
+    margin-top: 7px;
+  }
+
+  .ticks {
+    color: var(--accent);
+    transition: color 0.4s ease;
+  }
+  :global(.js) .guest:not(.is-read) .ticks {
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    .q {
+      max-width: 88%;
+    }
+  }
+</style>

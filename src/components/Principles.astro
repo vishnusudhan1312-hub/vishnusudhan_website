@@ -1,0 +1,96 @@
+---
+import { principles } from '../data/content';
+const total = String(principles.length).padStart(2, '0');
+---
+
+<ol class="principles">
+  {
+    principles.map((p, i) => (
+      <li class="pr" data-principle>
+        <p class="num">
+          {String(i + 1).padStart(2, '0')} / {total}
+        </p>
+        <h3 class="pt">
+          <span class="ink" data-ink>
+            {p.title}
+          </span>
+        </h3>
+        <p class="pd" data-desc>
+          {p.desc}
+        </p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .principles {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 48px);
+  }
+
+  .pr {
+    min-height: 82vh;
+    min-height: 82svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 26px;
+    padding-block: 48px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .num {
+    font: 500 12px/1 var(--font-mono);
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+
+  .pt {
+    max-width: 1050px;
+    font: 400 clamp(2.8rem, 8.4vw, 7.2rem) / 0.98 var(--font-serif);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  /* Two-layer fill clipped to the text, on an inline span so it runs across lines in reading order. */
+  .ink {
+    --p: 100%;
+    background:
+      linear-gradient(var(--ink), var(--ink)) 0 0 / var(--p) 100% no-repeat,
+      linear-gradient(var(--ghost), var(--ghost));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ink::selection {
+    color: var(--on-accent);
+  }
+
+  .pd {
+    max-width: 520px;
+    font: 400 19px/1.55 var(--font-sans);
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+
+  .pr.scrub .pd {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s var(--ease);
+  }
+  .pr.scrub.inked .pd {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (forced-colors: active) {
+    .ink {
+      background: none;
+      color: CanvasText;
+    }
+  }
+</style>

@@ -1,0 +1,122 @@
+---
+import { career } from '../data/content';
+const total = String(career.stops.length).padStart(2, '0');
+---
+
+<figure class="career card attach" data-reveal="card" data-career>
+  <div class="head meta">
+    <span>{career.label}</span>
+    <span aria-hidden="true"><span data-count>01</span> / {total} · drag →</span>
+  </div>
+  <ol class="track" tabindex="0" aria-label={`${career.label}. ${career.stops.length} stops, scroll sideways.`} data-track>
+    {
+      career.stops.map((s, i) => (
+        <li class:list={['stop', { free: s.freelance }]} data-stop>
+          <p class="top">
+            <span>
+              <span aria-hidden="true">↪ </span>Stop {String(i + 1).padStart(2, '0')}
+            </span>
+            {s.tag && <span class="tag">{s.tag}</span>}
+          </p>
+          <p class="role">{s.role}</p>
+          <p class="org">{s.org}</p>
+          <p class="note">{s.note}</p>
+        </li>
+      ))
+    }
+  </ol>
+  <figcaption class="cap">{career.caption}</figcaption>
+</figure>
+
+<style>
+  .career {
+    overflow: hidden;
+    padding: 22px 0 18px;
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 22px 6px;
+  }
+
+  .track {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding: 28px calc(50% - 115px) 26px;
+    perspective: 900px;
+    scrollbar-width: none;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .track::-webkit-scrollbar {
+    display: none;
+  }
+  .track:focus-visible {
+    outline-offset: -4px;
+    border-radius: var(--r-card);
+  }
+  .track.dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+  }
+
+  .stop {
+    flex: none;
+    width: 230px;
+    min-height: 210px;
+    scroll-snap-align: center;
+    border-radius: var(--r-card-sm);
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transform-style: preserve-3d;
+    box-shadow: var(--shadow-card);
+  }
+  .stop.free {
+    background: repeating-linear-gradient(135deg, var(--card) 0 9px, var(--hatch) 9px 18px);
+  }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    font: 500 10px/1 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .tag {
+    color: var(--accent);
+  }
+
+  .role {
+    margin-top: auto;
+    font: 400 25px/1.05 var(--font-serif);
+  }
+  .org {
+    font: 500 12.5px/1.3 var(--font-sans);
+    color: var(--muted);
+  }
+  .note {
+    font: 400 13px/1.45 var(--font-sans);
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+  }
+
+  .cap {
+    padding: 0 22px;
+    font: 400 13px/1.5 var(--font-sans);
+    color: var(--muted);
+  }
+</style>

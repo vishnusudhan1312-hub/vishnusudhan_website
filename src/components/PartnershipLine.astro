@@ -1,0 +1,230 @@
+---
+import { partnershipLine as pl } from '../data/content';
+---
+
+<figure class="pline card attach" data-reveal="card" data-pline>
+  <div class="head meta">
+    <span>{pl.label}</span><span aria-hidden="true">{pl.cue}</span>
+  </div>
+  <div class="track">
+    <span class="rail" aria-hidden="true"></span>
+    <span class="fill" aria-hidden="true"></span>
+    <ol class="nodes">
+      {
+        pl.nodes.map((n) => (
+          <li class={`node k-${n.kind}`} data-at={n.at}>
+            <span class="mark" aria-hidden="true" />
+            <span class="lbl">{n.label}</span>
+            {n.kind === 'signed' && <span class="stamp">{pl.stamp}</span>}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+  <figcaption class="cap">{pl.caption}</figcaption>
+</figure>
+
+<style>
+  .pline {
+    position: relative;
+    overflow: hidden;
+    padding: 24px 0 26px;
+    container-type: inline-size;
+    --p: 1;
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    justify-content: space-between;
+    padding: 0 24px;
+  }
+
+  .track {
+    position: relative;
+    height: 190px;
+    margin-top: 10px;
+  }
+
+  .rail,
+  .fill {
+    position: absolute;
+    left: 24px;
+    right: 0;
+  }
+  .rail {
+    top: 96px;
+    height: 2px;
+    background: var(--line);
+  }
+  .fill {
+    top: 95px;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--accent) 80%, transparent);
+    box-shadow: 0 0 18px var(--glow);
+    transform-origin: 0 50%;
+    transform: scaleX(min(1, calc(var(--p) * 1.04)));
+    will-change: transform;
+  }
+
+  .node {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: opacity 0.4s ease;
+  }
+  .pline.scrub .node:not(.lit) {
+    opacity: 0.3;
+  }
+
+  .k-start { left: 24px; }
+  .k-signed { left: 30%; }
+  .node:nth-child(3) { left: 52%; }
+  .node:nth-child(4) { left: 70%; }
+  .k-end { left: 88%; }
+
+  .mark {
+    position: absolute;
+    top: 97px;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+  .k-start .mark,
+  .k-end .mark {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 2px solid var(--accent);
+  }
+  .k-signed .mark {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background: var(--accent);
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  .k-dot .mark {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  .lbl {
+    position: absolute;
+    white-space: nowrap;
+    font: 500 13px/1 var(--font-sans);
+  }
+  .k-start .lbl,
+  .k-end .lbl {
+    top: 36px;
+    font: italic 400 22px/1 var(--font-serif);
+  }
+  .k-start .lbl {
+    left: -8px;
+  }
+  .k-end .lbl {
+    right: -10px;
+    color: var(--accent);
+  }
+  .k-signed .lbl,
+  .k-dot .lbl {
+    left: 0;
+    transform: translateX(-50%);
+  }
+  .k-signed .lbl,
+  .node:nth-child(4) .lbl {
+    top: 126px;
+  }
+  .node:nth-child(3) .lbl {
+    top: 44px;
+  }
+
+  .stamp {
+    position: absolute;
+    top: 148px;
+    left: 0;
+    white-space: nowrap;
+    font: 500 10px/1 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 5px 7px;
+    border-radius: 3px;
+    transform: translateX(-50%) rotate(-4deg);
+  }
+
+  .cap {
+    padding: 0 24px;
+    font: 400 13px/1.5 var(--font-sans);
+    color: var(--muted);
+  }
+
+  /* Phones: the same line, running down instead of across. */
+  @container (max-width: 520px) {
+    .track {
+      height: 360px;
+      margin: 18px 0 8px;
+    }
+    .rail,
+    .fill {
+      left: 31px;
+      right: auto;
+      top: 6px;
+      bottom: 0;
+      height: auto;
+    }
+    .rail {
+      width: 2px;
+    }
+    .fill {
+      left: 30px;
+      width: 4px;
+      background: linear-gradient(180deg, var(--accent) 80%, transparent);
+      transform-origin: 50% 0;
+      transform: scaleY(min(1, calc(var(--p) * 1.04)));
+    }
+    .node,
+    .k-start,
+    .k-signed,
+    .k-end,
+    .node:nth-child(3),
+    .node:nth-child(4) {
+      left: 0;
+      right: 0;
+      height: auto;
+    }
+    .k-start { top: 3%; }
+    .k-signed { top: 26%; }
+    .node:nth-child(3) { top: 52%; }
+    .node:nth-child(4) { top: 70%; }
+    .k-end { top: 90%; }
+
+    .mark {
+      top: 0;
+      left: 32px;
+    }
+    .lbl,
+    .k-start .lbl,
+    .k-end .lbl,
+    .k-signed .lbl,
+    .k-dot .lbl,
+    .node:nth-child(3) .lbl,
+    .node:nth-child(4) .lbl {
+      top: 0;
+      left: 58px;
+      right: auto;
+      transform: translateY(-50%);
+    }
+    .stamp {
+      top: 20px;
+      left: 58px;
+      transform: rotate(-4deg);
+      transform-origin: 0 50%;
+    }
+  }
+</style>

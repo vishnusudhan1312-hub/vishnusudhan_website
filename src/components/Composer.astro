@@ -1,0 +1,115 @@
+---
+import { composer, site } from '../data/content';
+---
+
+<div class="composer" data-composer data-email={site.email} data-subject={composer.subject}>
+  <div class="box">
+    <label class="sr-only" for="compose">Write to Vishnu. This opens your email app; nothing is sent from this site.</label>
+    <input
+      id="compose"
+      type="text"
+      placeholder={composer.placeholder}
+      autocomplete="off"
+      maxlength="1500"
+      enterkeyhint="send"
+      data-compose-input
+    />
+    <span class="hint" aria-hidden="true">{composer.hint}</span>
+    <button type="button" class="send" data-compose-send>
+      <span aria-hidden="true">↑</span><span class="sr-only">Open in your email app</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .composer {
+    position: fixed;
+    left: 50%;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    z-index: 50;
+    width: min(640px, calc(100% - 24px));
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%, 140%);
+    transition:
+      transform 0.6s var(--ease),
+      opacity 0.4s ease,
+      visibility 0s linear 0.6s;
+  }
+  .composer.is-shown {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+    transition:
+      transform 0.6s var(--ease),
+      opacity 0.4s ease,
+      visibility 0s;
+  }
+  :global(html:not(.ready)) .composer {
+    display: none;
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 8px 8px 20px;
+    border-radius: 999px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-composer);
+  }
+  .box:focus-within {
+    border-color: var(--accent);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 44px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font: 400 16px/1 var(--font-sans);
+  }
+  input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+  }
+
+  .hint {
+    font: 400 10.5px/1.2 var(--font-mono);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Narrow phones: stack the hint so the placeholder stays whole. The hint stays visible. */
+  @media (max-width: 400px) {
+    .box {
+      padding-left: 16px;
+    }
+    .hint {
+      white-space: normal;
+      width: 6.5em;
+      text-align: right;
+    }
+  }
+
+  .send {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 0;
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    font: 500 18px/1 var(--font-sans);
+    transition: transform 0.2s var(--ease);
+  }
+  .send:hover {
+    transform: scale(1.08);
+  }
+  .send:active {
+    transform: scale(0.96);
+  }
+</style>

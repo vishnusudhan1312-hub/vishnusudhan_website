@@ -1,33 +1,37 @@
 ---
+import { footer } from '../data/content';
 ---
-<footer>
-  <span>Vishnu Sudhan · Chennai, India · © 2026</span>
-  <span class="footer-right">Built with restraint.</span>
+
+<footer class="foot col">
+  <p class="sign">{footer.lead} <em>{footer.close}</em></p>
+  <p class="edu">{footer.line}</p>
 </footer>
 
 <style>
-  footer {
-    padding: 28px var(--gutter);
+  .foot {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    color: var(--ink-mute);
-    border-top: 1px solid var(--rule);
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 120px;
   }
-  .footer-right {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 13px;
-    color: var(--ink-mute);
-    letter-spacing: 0;
+  .foot::before {
+    content: '';
+    display: block;
+    height: 1px;
+    margin-bottom: 18px;
+    background: var(--line);
   }
-  @media (max-width: 768px) {
-    footer { padding: 20px var(--gutter); }
-    .footer-right { font-size: 12px; }
+
+  .sign {
+    font: 400 clamp(2rem, 6vw, 3.4rem) / 1 var(--font-serif);
+    text-wrap: balance;
+  }
+  .sign em {
+    color: var(--accent);
+  }
+
+  .edu {
+    font: 400 12.5px/1.6 var(--font-mono);
+    color: var(--muted);
   }
 </style>

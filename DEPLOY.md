@@ -1,128 +1,44 @@
-# Deploying vishnusudhan.com to Cloudflare Pages
+# Deploying vishnusudhan.com
 
-A step-by-step guide. Follow it once, top to bottom. ~20 minutes the first time.
+The site deploys itself. Cloudflare watches this GitHub repo; every push to `main` builds and publishes it to the Worker named `vs`, which serves vishnusudhan.com. If a build fails, the previous version stays live.
 
-> **Why Pages and not Workers + Static Assets?** Cloudflare's newer
-> "Workers + Static Assets" product runs `npx wrangler deploy` on every push,
-> which auto-runs `astro add cloudflare` for any Astro project it sees and
-> converts the build to SSR — even when you only want static. For a static
-> portfolio that's overhead we don't need. **Pages** is a pure upload-and-serve
-> product: it runs your build command, uploads the output directory, and
-> serves it from the edge. No adapter, no wrangler, no surprises.
+## How a change goes live
 
-You'll end up with:
-- `vishnusudhan.com` registered at Cloudflare Registrar
-- Site live on Cloudflare Pages, deployed from GitHub
-- HTTPS enforced, security headers active, A+ on securityheaders.com
-- Bot Fight Mode + WAF on
-- DNSSEC + Registrar Lock enabled
+1. Edit, then check locally with `pnpm dev`.
+2. Commit and push to `main`.
+3. Wait 1–3 minutes, then open https://vishnusudhan.com in a private window.
 
-You'll need: a credit card (~$10/yr for the domain), a GitHub account, this repo pushed to GitHub.
+Build progress and logs: Cloudflare dashboard → **Workers & Pages** → **vs** → **Deployments**.
 
----
+## Cloudflare build settings (one-time check)
 
-## Part 1 — Domain (Cloudflare Registrar)
+Dashboard → **Workers & Pages** → **vs** → **Settings** → **Build**:
 
-1. Sign up at [cloudflare.com](https://cloudflare.com).
-2. From the dashboard sidebar, choose **Domain Registration → Register Domains**.
-3. Search `vishnusudhan.com`. Add to cart, pay (~$10/yr at cost — Cloudflare doesn't markup).
-4. Once registered, open the domain. Under **DNS → Settings**, enable **DNSSEC**. Cloudflare will show DS records — they're auto-applied at the Registrar tier, so no manual step.
-5. Under **Domain Registration → Manage Domains**, click your domain, scroll to **Transfer** and confirm **Registrar Lock = ON** (default).
+| Setting | Value |
+|---|---|
+| Git repository | `vishnusudhan1312-hub/vishnusudhan_website` |
+| Production branch | `main` |
+| Build command | `pnpm run build` |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | `/` (blank) |
 
----
+Optional build variable (**Settings → Variables and secrets**, build section): `NODE_VERSION` = `24`. The repo's `.nvmrc` already asks for 24.
 
-## Part 2 — Pages deployment
+The Worker name in `wrangler.jsonc` must stay `vs` to match the dashboard. Custom domains and routes are managed in the dashboard (**Settings → Domains & Routes**), not in the repo, so deploys leave them alone.
 
-1. **Push this repo to GitHub.** From inside the project folder:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial production build"
-   git branch -M main
-   gh repo create vishnusudhan-com --private --source=. --push
-   ```
-   (Or push manually if you don't use `gh`.)
+## Cloudflare settings that affect this site
 
-2. In the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git**.
+- **JavaScript Detections** (Security → Bots). Cloudflare injects a small inline bot-detection script into every page. The site's security policy blocks inline scripts, so it can't run and leaves an error in the browser console. Turn JavaScript Detections off if the toggle is available. Bot Fight Mode can stay on.
+- **Email Address Obfuscation** (Scrape Shield). If it's on, Cloudflare rewrites email links in the HTML using a script. Check that the email chip still opens a mail draft on the live site; if it doesn't, turn this off.
+- **Email Routing**. `hello@vishnusudhan.com` forwards to your inbox. Keep it on; the site's email chip and message box both write to that address.
 
-3. Authorize GitHub, select the `vishnusudhan-com` repo.
+## Verify after a deploy
 
-4. **Build settings:**
-   - **Framework preset:** Astro
-   - **Build command:** `pnpm build`
-   - **Build output directory:** `dist`
-   - **Root directory:** `/`
-   - **Environment variables:**
-     - `NODE_VERSION` = `22`  *(Active LTS Node 24 also works; 22 is broadest)*
-     - `PNPM_VERSION` = `10`
+- https://securityheaders.com/?q=vishnusudhan.com → expect A or A+.
+- https://pagespeed.web.dev/?url=https://vishnusudhan.com → check mobile and desktop.
+- Toggle dark/light, reload: the choice should stick.
+- Type in the message box and press Enter: your email app should open a draft to hello@vishnusudhan.com.
 
-5. Click **Save and Deploy**. First build takes ~2 minutes. You'll get a `*.pages.dev` preview URL.
+## Rolling back
 
-6. Once green, go to the project's **Custom domains** tab. Add:
-   - `vishnusudhan.com`
-   - `www.vishnusudhan.com`
-
-   Cloudflare creates the CNAME records automatically because the domain is in your account. Wait ~1 minute for the SSL cert to provision (status changes from "Pending" to "Active").
-
-7. Set the apex (`vishnusudhan.com`) as the canonical and `www` as a redirect — Cloudflare Pages does this automatically when both are added.
-
----
-
-## Part 3 — Hardening
-
-Open the zone for `vishnusudhan.com` in Cloudflare (not the Pages project — the DNS zone). Then:
-
-1. **Security → Bots → Bot Fight Mode:** ON.
-2. **Security → WAF → Security Level:** High.
-3. **Security → Settings → Browser Integrity Check:** ON.
-4. **SSL/TLS → Edge Certificates:**
-   - Always Use HTTPS: ON
-   - Automatic HTTPS Rewrites: ON
-   - Minimum TLS Version: 1.2
-5. **Speed → Optimization:**
-   - Auto Minify: HTML, CSS, JS all ON
-   - Brotli: ON (default)
-6. **Caching → Configuration → Browser Cache TTL:** Respect Existing Headers (the site ships its own via `public/_headers`).
-
----
-
-## Part 4 — Verification
-
-1. Open the site in incognito on phone + desktop. The first paint should already be themed (dark by default), the photo should load grayscale and color-fade on hover, the APAC chart trajectories should draw in.
-2. Click the theme toggle → site flips to light mode → reload → still light. (Theme persists in `localStorage` under `vs-theme`.)
-3. Click the **Email** row in the Connect section → email is revealed AND auto-copied to clipboard.
-4. Open DevTools → **Network** tab → reload. Confirm: every request goes to `vishnusudhan.com`. No `fonts.googleapis.com`, no Google Analytics, no third party.
-5. Run [securityheaders.com](https://securityheaders.com/?q=https%3A%2F%2Fvishnusudhan.com) → expect **A+**.
-6. Run [pagespeed.web.dev](https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fvishnusudhan.com) → expect Performance ≥ 95 mobile, ≥ 98 desktop, Accessibility / Best Practices / SEO all 100.
-7. Open `https://vishnusudhan.com/photo.jpg` directly. View image properties — there should be no EXIF, GPS, or camera metadata.
-
----
-
-## Routine updates
-
-Editing copy or making any change:
-
-```bash
-# edit src/components/*.astro
-pnpm build           # local sanity check
-git add . && git commit -m "..." && git push
-```
-
-Cloudflare Pages picks up the push and redeploys in ~2 minutes. The `_headers` file is part of `public/` and ships on every deploy.
-
----
-
-## Rollback
-
-In the Pages project → **Deployments**, click any past deployment → **Rollback to this deployment**. No git revert needed.
-
----
-
-## What NOT to add
-
-The whole site is intentionally lean. Resist the urge to add:
-- Google Analytics or any tracker — the only "analytics" is Cloudflare's built-in zone-level traffic graph.
-- Cookie banners — the site sets no cookies.
-- Contact forms — the email reveal is the contact path.
-- A CMS — copy lives in components, edited in code.
-- Any `<script src="https://...">` from a CDN — the CSP forbids it and so does the brief.
+Dashboard → **Workers & Pages** → **vs** → **Deployments** → pick the previous deployment → **Rollback**. Or revert the commit on GitHub and push.

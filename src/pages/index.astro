@@ -1,30 +1,107 @@
 ---
 import Base from '../layouts/Base.astro';
-import Nav from '../components/Nav.astro';
+import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import Currently from '../components/Currently.astro';
-import ThinkSection from '../components/ThinkSection.astro';
-import AreasSection from '../components/AreasSection.astro';
-import WorkSection from '../components/WorkSection.astro';
-import QuoteSection from '../components/QuoteSection.astro';
-import AboutSection from '../components/AboutSection.astro';
-import ConnectSection from '../components/ConnectSection.astro';
+import Chapter from '../components/Chapter.astro';
+import Guest from '../components/Guest.astro';
+import Say from '../components/Say.astro';
+import PartnershipLine from '../components/PartnershipLine.astro';
+import CareerCarousel from '../components/CareerCarousel.astro';
+import FlipCards from '../components/FlipCards.astro';
+import Principles from '../components/Principles.astro';
+import Certificates from '../components/Certificates.astro';
+import BuildStatus from '../components/BuildStatus.astro';
+import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
-
-const title = "Vishnu Sudhan — Digital transformation pipelines for APAC's regulated industries";
-const description = "Business development for boutique digital transformation in APAC's regulated industries — airlines, fintech, healthcare. Currently at Digitraly.";
+import Composer from '../components/Composer.astro';
+import { qa, chapters } from '../data/content';
 ---
-<Base title={title} description={description}>
-  <Nav />
-  <main id="main">
-    <Hero />
-    <Currently />
-    <ThinkSection />
-    <AreasSection />
-    <WorkSection />
-    <QuoteSection />
-    <AboutSection />
-    <ConnectSection />
-  </main>
-  <Footer />
+
+<Base>
+  <Header />
+  <Hero />
+
+  <div class="wall">
+    <main id="main" tabindex="-1">
+      <Chapter {...chapters.hello}>
+        <div class="col">
+          <div class="tilt" data-tilt>
+            <Guest id={qa.hello.id} first>{qa.hello.q}</Guest>
+            <Say avatar gap="tight">{qa.hello.a[0]}</Say>
+          </div>
+
+          <Guest id={qa.work.id}>{qa.work.q}</Guest>
+          <Say>{qa.work.a[0]}</Say>
+          <PartnershipLine />
+          <Say>{qa.work.a[1]}</Say>
+          <Say avatar>{qa.work.a[2]}</Say>
+        </div>
+      </Chapter>
+
+      <Chapter {...chapters.path}>
+        <div class="col">
+          <Guest id={qa.seo.id} first>{qa.seo.q}</Guest>
+          <Say avatar>{qa.seo.a[0]}</Say>
+          <CareerCarousel />
+
+          <Guest id={qa.marketer.id}>{qa.marketer.q}</Guest>
+          <Say avatar>{qa.marketer.a[0]}</Say>
+        </div>
+      </Chapter>
+
+      <Chapter {...chapters.freelance}>
+        <div class="col">
+          <Guest id={qa.freelance.id} first>{qa.freelance.q}</Guest>
+          <Say avatar>{qa.freelance.a[0]}</Say>
+          <FlipCards />
+        </div>
+      </Chapter>
+
+      <Chapter {...chapters.principles}>
+        <div class="col">
+          <Guest id={qa.principles.id} first>{qa.principles.q}</Guest>
+          <Say avatar>{qa.principles.a[0]}</Say>
+        </div>
+        <Principles />
+      </Chapter>
+
+      <Chapter {...chapters.proof}>
+        <div class="col">
+          <Guest id={qa.proof.id} first>{qa.proof.q}</Guest>
+          <Say avatar>{qa.proof.a[0]}</Say>
+          <Certificates />
+          <Say avatar gap="loose">{qa.proof.a[1]}</Say>
+          <BuildStatus />
+        </div>
+      </Chapter>
+
+      <Chapter {...chapters.contact}>
+        <div class="col">
+          <Guest id={qa.reach.id} first>{qa.reach.q}</Guest>
+          <Say avatar>{qa.reach.a[0]}</Say>
+          <Contact />
+        </div>
+      </Chapter>
+    </main>
+    <Footer />
+  </div>
+
+  <Composer />
 </Base>
+
+<style>
+  .wall {
+    position: relative;
+    padding-bottom: 160px;
+    background-image: radial-gradient(var(--wall) 1px, transparent 1.3px);
+    background-size: 22px 22px;
+  }
+
+  main:focus {
+    outline: none;
+  }
+
+  .tilt {
+    transform-origin: 50% 100%;
+  }
+</style>
