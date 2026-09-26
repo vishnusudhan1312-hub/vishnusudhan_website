@@ -296,6 +296,56 @@ function initFlips(): void {
   });
 }
 
+/* Mail fallback. mailto: does nothing visible when the visitor has no email app (common with
+   browser-only Gmail), so offer Gmail compose and a copy button every time. */
+const mailHelp = (() => {
+  const panel = $('[data-mailhelp]');
+  const composer = $('[data-composer]');
+  const gmail = $<HTMLAnchorElement>('[data-mh-gmail]');
+  const copy = $<HTMLButtonElement>('[data-mh-copy]');
+  const close = $('[data-mh-close]');
+  if (!panel || !composer || !gmail || !copy || !close) return null;
+
+  const email = composer.dataset.email ?? '';
+  const subject = composer.dataset.subject ?? '';
+  let timer = 0;
+
+  const hide = () => {
+    panel.hidden = true;
+    window.clearTimeout(timer);
+  };
+
+  copy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      copy.textContent = 'Copied';
+    } catch {
+      copy.textContent = email;
+    }
+  });
+  close.addEventListener('click', hide);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !panel.hidden) hide();
+  });
+
+  return (body = '') => {
+    const params = new URLSearchParams({ view: 'cm', fs: '1', to: email, su: subject });
+    if (body) params.set('body', body);
+    gmail.href = `https://mail.google.com/mail/?${params.toString()}`;
+    copy.textContent = 'Copy address';
+    panel.hidden = false;
+    window.clearTimeout(timer);
+    timer = window.setTimeout(hide, 20_000);
+  };
+})();
+
+function initMailLinks(): void {
+  document.addEventListener('click', (e) => {
+    const link = (e.target as Element).closest<HTMLAnchorElement>('a[href^="mailto:"]');
+    if (link) mailHelp?.();
+  });
+}
+
 /* Composer: builds a mailto link. Nothing is sent or stored by this site. */
 function initComposer(): void {
   const composer = $('[data-composer]');
@@ -341,6 +391,7 @@ function initComposer(): void {
     const text = input.value.trim();
     let href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
     if (text) href += `&body=${encodeURIComponent(text)}`;
+    mailHelp?.(text);
     window.location.href = href;
   };
   send.addEventListener('click', open);
@@ -360,6 +411,7 @@ initJumps();
 initCarousel();
 initFlips();
 initComposer();
+initMailLinks();
 root.classList.add('ready');
 
 // Scroll effects are enhancements: load them once the page is idle, off the startup path.

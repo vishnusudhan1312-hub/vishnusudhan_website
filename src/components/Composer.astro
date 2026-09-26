@@ -21,6 +21,19 @@ import { composer, site } from '../data/content';
   </div>
 </div>
 
+<div class="mailhelp" data-mailhelp role="status" hidden>
+  <p class="mh-text">Opening your email app. Nothing opened?</p>
+  <div class="mh-actions">
+    <a class="mh-btn" data-mh-gmail href="https://mail.google.com/" target="_blank" rel="noopener noreferrer">
+      Write in Gmail <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+    </a>
+    <button type="button" class="mh-btn" data-mh-copy>Copy address</button>
+    <button type="button" class="mh-close" data-mh-close>
+      <span aria-hidden="true">×</span><span class="sr-only">Dismiss</span>
+    </button>
+  </div>
+</div>
+
 <style>
   .composer {
     position: fixed;
@@ -92,6 +105,85 @@ import { composer, site } from '../data/content';
       white-space: normal;
       width: 6.5em;
       text-align: right;
+    }
+  }
+
+  /* Fallback when no email app opens: Gmail compose or copy the address. */
+  .mailhelp {
+    position: fixed;
+    left: 50%;
+    bottom: calc(86px + env(safe-area-inset-bottom));
+    z-index: 51;
+    width: min(640px, calc(100% - 24px));
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px 14px;
+    padding: 12px 12px 12px 20px;
+    border-radius: 22px 22px 22px 6px;
+    background: var(--guest);
+    color: var(--guest-ink);
+    box-shadow: var(--shadow-composer);
+    transform: translateX(-50%);
+    animation: mh-in 0.3s var(--ease);
+  }
+  .mailhelp[hidden] {
+    display: none;
+  }
+
+  .mh-text {
+    padding-right: 36px;
+    font: 500 14px/1.4 var(--font-sans);
+  }
+
+  .mh-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--guest-ink) 30%, transparent);
+    background: transparent;
+    color: var(--guest-ink);
+    font: 500 13px/1 var(--font-sans);
+    white-space: nowrap;
+    transition: border-color 0.2s ease;
+  }
+  .mh-btn:hover {
+    border-color: var(--guest-ink);
+  }
+  .mh-btn:focus-visible,
+  .mh-close:focus-visible {
+    outline-color: var(--guest-ink);
+  }
+
+  .mh-close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--guest-ink);
+    font: 400 22px/1 var(--font-sans);
+  }
+
+  @keyframes mh-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 10px);
     }
   }
 
