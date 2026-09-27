@@ -85,7 +85,8 @@ function certificateFan(): void {
     items,
     {
       y: (i: number, el: HTMLElement) => first.offsetTop - el.offsetTop + i * 8,
-      rotate: (i: number) => (i - 1.5) * 4,
+      // Centred on the middle card, so the stack fans evenly either side.
+      rotate: (i: number, _el: HTMLElement, all: HTMLElement[]) => (i - (all.length - 1) / 2) * 4,
       opacity: (i: number) => (i === 0 ? 1 : 0.2),
     },
     {

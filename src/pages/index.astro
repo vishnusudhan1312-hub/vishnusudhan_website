@@ -5,7 +5,6 @@ import Hero from '../components/Hero.astro';
 import Chapter from '../components/Chapter.astro';
 import Guest from '../components/Guest.astro';
 import Say from '../components/Say.astro';
-import PartnershipLine from '../components/PartnershipLine.astro';
 import CareerCarousel from '../components/CareerCarousel.astro';
 import FlipCards from '../components/FlipCards.astro';
 import Principles from '../components/Principles.astro';
@@ -31,10 +30,11 @@ import { qa, chapters } from '../data/content';
           </div>
 
           <Guest id={qa.work.id}>{qa.work.q}</Guest>
-          <Say>{qa.work.a[0]}</Say>
-          <PartnershipLine />
-          <Say>{qa.work.a[1]}</Say>
-          <Say avatar>{qa.work.a[2]}</Say>
+          <Say avatar>{qa.work.a[0]}</Say>
+
+          <Guest id={qa.who.id}>{qa.who.q}</Guest>
+          <Say avatar gap="tight">{qa.who.a[0]}</Say>
+          <Say>{qa.who.a[1]}</Say>
         </div>
       </Chapter>
 

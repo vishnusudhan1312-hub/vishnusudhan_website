@@ -1,4 +1,4 @@
-// Verbatim from COPY.md (v2, Sep 26 2026). Only change: straight apostrophes set as typographic ones.
+// Verbatim from COPY.md (v3, Sep 27 2026). Only change: straight apostrophes set as typographic ones.
 
 export const site = {
   url: 'https://vishnusudhan.com',
@@ -32,16 +32,22 @@ export const qa = {
     id: 'q-hello',
     q: 'Hi. Tell me about yourself.',
     a: [
-      'Hi, I’m Vishnu Sudhan. I work in Partnerships and Alliances at Digitraly, based in Chennai. I started out in SEO and have also worked as a freelance marketer. Whatever the work, I first make sure I understand what it’s meant to achieve.',
+      'I’m Vishnu Sudhan. Partnerships and Alliances at Digitraly, based in Chennai, 4.5+ years in. Most people get here through sales. I got here through SEO.',
     ],
   },
   work: {
     id: 'q-do',
-    q: 'So, what do you actually do?',
+    q: 'So, what do you currently do?',
     a: [
-      'My job is to build partnerships that work for both sides, and keep working long after the deal is signed. Most people hear “partnership” and picture a signed agreement. For me that’s where it starts.',
-      'What keeps it alive is networking, mutual respect and doing what you said you’d do. A signed contract alone doesn’t do that.',
-      'And when things get messy, I don’t wait for the job description to catch up. If something needs doing and would otherwise drop, I pick it up. I also work with a network of CMMI Level 5 partners, companies rated at the highest level for how reliably they deliver.',
+      'I build and run partnerships for Digitraly across aviation, fintech and healthcare in APAC. Quietly one of the more complex spaces to work in. Every partner brings its own layer of compliance before anyone even talks numbers.',
+    ],
+  },
+  who: {
+    id: 'q-who',
+    q: 'Who do you actually partner with?',
+    a: [
+      'It depends on the business need. Sometimes it’s a product worth reselling, sometimes staff augmentation, sometimes a tender that needs a partner to qualify for it. Underneath most of it is a network of CMMI Level 5 partners, companies rated at the top for how reliably they deliver.',
+      'And when things get messy, I don’t wait for the job description to catch up. If something needs doing and would otherwise drop, I pick it up.',
     ],
   },
   seo: {
@@ -55,7 +61,7 @@ export const qa = {
     id: 'q-marketer',
     q: 'You joined as a marketer. How did you end up in partnerships?',
     a: [
-      'It was offered to me after six months as a Digital Marketing Executive, and I took it. What pulled me in was getting closer to how a business actually thinks: how stakeholders see their vision, and talking directly with the people who make the decisions. That part still excites me.',
+      'Might trace back to my Economics degree, funnily enough. It was offered to me after six months as a Digital Marketing Executive, and I took it. What pulled me in was getting closer to how a business actually thinks: how stakeholders see their vision, and talking directly with the people who make the decisions. That part still excites me.',
     ],
   },
   freelance: {
@@ -71,7 +77,7 @@ export const qa = {
     a: ['Three things. Everything else is detail.'],
   },
   proof: {
-    id: 'q-proof',
+    id: 'q-cert',
     q: 'Can you share some of your notable certificates you’ve earned?',
     a: [
       'Sure, 15+ so far. A few that stuck with me:',
@@ -85,7 +91,15 @@ export const qa = {
   },
 } satisfies Record<string, Exchange>;
 
-export const chips = [qa.work, qa.seo, qa.freelance, qa.principles, qa.reach];
+// Hero shortcuts: one per section, in page order. Labels can be shorter than the question.
+export const chips = [
+  { id: qa.work.id, label: 'What do you currently do?' },
+  { id: qa.seo.id, label: qa.seo.q },
+  { id: qa.freelance.id, label: qa.freelance.q },
+  { id: qa.principles.id, label: qa.principles.q },
+  { id: qa.proof.id, label: 'Can you share your notable certificates?' },
+  { id: qa.reach.id, label: qa.reach.q },
+];
 
 export const partnershipLine = {
   label: 'A partnership, over time',
@@ -138,6 +152,7 @@ export const certificates = [
   { name: 'Google Play Academy: Store Listing Certificate', note: 'Went in expecting checkbox content. Came out understanding what actually gets an app noticed.' },
   { name: 'MSDE Skill India: Generative AI Bootcamp', note: 'Government-run, hands-on, not a weekend badge.' },
   { name: 'Harvard Business School Online: Financial Accounting', note: 'Not my background, but partnership decisions get easier when you can read a balance sheet.' },
+  { name: 'Google: Fundamentals of Digital Marketing', note: 'Where it all started, long before SEO or partnerships.' },
 ];
 
 export const build = {
@@ -177,6 +192,7 @@ export function faqAnswers(): { q: string; a: string }[] {
   return [
     { q: qa.hello.q, a: join(qa.hello.a) },
     { q: qa.work.q, a: join(qa.work.a) },
+    { q: qa.who.q, a: join(qa.who.a) },
     { q: qa.seo.q, a: join(qa.seo.a) },
     { q: qa.marketer.q, a: join(qa.marketer.a) },
     {

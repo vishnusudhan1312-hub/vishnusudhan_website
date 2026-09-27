@@ -1,5 +1,9 @@
 ---
+import PartnershipLine from './PartnershipLine.astro';
 import { principles } from '../data/content';
+
+// "Think long term" carries the partnership line under its description.
+const LINE_AFTER = 1;
 const total = String(principles.length).padStart(2, '0');
 ---
 
@@ -18,6 +22,11 @@ const total = String(principles.length).padStart(2, '0');
         <p class="pd" data-desc>
           {p.desc}
         </p>
+        {i === LINE_AFTER && (
+          <div class="line-slot">
+            <PartnershipLine />
+          </div>
+        )}
       </li>
     ))
   }
@@ -66,6 +75,11 @@ const total = String(principles.length).padStart(2, '0');
   }
   .ink::selection {
     color: var(--on-accent);
+  }
+
+  .line-slot {
+    width: 100%;
+    max-width: var(--col);
   }
 
   .pd {
